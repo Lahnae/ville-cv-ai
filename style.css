@@ -6,7 +6,7 @@ body {
     color: #222;
 }
 
-/* HERO – kuva taustalla, tekstit päällä */
+/* HERO – parallax-tausta + tekstit päällä */
 .hero {
     position: relative;
     height: 100vh;
@@ -18,19 +18,43 @@ body {
     text-align: center;
 }
 
-/* Taustakuva */
+/* Parallax-taustakuva */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%; /* hieman suurempi, jotta parallax toimii */
+    overflow: hidden;
+    z-index: 0;
+}
+
 .hero-background img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 120%;
     object-fit: cover;
     filter: brightness(0.35);
-    z-index: 0;
+    transform: translateY(-10%); /* lähtöasento */
+    animation: parallaxScroll 20s linear infinite;
 }
 
-/* Hero‑tekstit */
+/* Parallax-animaatio */
+@keyframes parallaxScroll {
+    0% {
+        transform: translateY(-10%);
+    }
+    50% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-10%);
+    }
+}
+
+/* Hero-tekstit */
 .hero-content {
     position: relative;
     z-index: 1;
@@ -56,7 +80,7 @@ body {
     font-size: 18px;
 }
 
-/* CTA‑napit */
+/* CTA-napit */
 .btn {
     background: #0078ff;
     color: white;
@@ -105,7 +129,7 @@ footer {
     margin-top: 40px;
 }
 
-/* Animaatio hero‑teksteille */
+/* Hero-tekstien animaatio */
 @keyframes fadeInUp {
     0% {
         opacity: 0;

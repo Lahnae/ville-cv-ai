@@ -130,16 +130,20 @@ body {
         0 0 40px #fff;
 }
 
-/* ⭐ Sticky navigaatio */
 .navbar {
     width: 100%;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(8px);
-    padding: 14px 0;
+    background: rgba(0, 0, 0, 1); /* syvä musta */
+    backdrop-filter: blur(10px);
+    padding: 16px 0;
     position: sticky;
     top: 0;
     z-index: 999;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+
+    /* pehmeä reunus */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(0, 255, 255, 0.15); /* kevyt neon‑hohde */
 }
 
 .nav-container {
@@ -156,25 +160,41 @@ body {
     font-size: 1.3rem;
     font-weight: bold;
     text-decoration: none;
-    text-shadow: 0 0 10px #00eaff;
+    text-shadow: 0 0 8px #00eaff;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 28px;
 }
 
 .nav-links a {
-    color: white;
+    color: #eaeaea;
     text-decoration: none;
     font-size: 1rem;
-    transition: 0.3s;
+    padding: 6px 0;
+
+    /* pehmeä fontti */
+    font-weight: 300;
+    letter-spacing: 0.5px;
+
+    transition: 0.25s ease;
 }
 
+/* Hover – pehmeä neon */
 .nav-links a:hover {
     color: #7df9ff;
     text-shadow: 0 0 10px #00eaff;
+}
+
+/* Aktiivinen linkki */
+.nav-links a.active {
+    color: #7df9ff;
+    font-weight: 500;
+    text-shadow: 0 0 12px #00eaff;
+    border-bottom: 2px solid #00eaff;
+    padding-bottom: 4px;
 }
 
 /* Sisältöosiot */

@@ -76,30 +76,47 @@ body {
     font-size: 18px;
 }
 
-/* CTA-napit */
+/* Neon-napit */
 .btn {
-    background: #0078ff;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    margin: 5px;
+    position: relative;
     display: inline-block;
-    transition: background 0.2s ease;
+    padding: 14px 32px;
+    margin: 8px;
+    font-size: 18px;
+    color: #00eaff;
+    text-decoration: none;
+    border: 2px solid #00eaff;
+    border-radius: 8px;
+    transition: 0.25s ease;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
 }
 
+/* Hover-efekti */
 .btn:hover {
-    background: #005fcc;
+    color: #fff;
+    background: rgba(0, 234, 255, 0.25);
+    box-shadow:
+        0 0 10px #00eaff,
+        0 0 20px #00eaff,
+        0 0 40px #00eaff;
+    border-color: #fff;
 }
 
+/* Sekundäärinappi */
 .btn.secondary {
-    background: rgba(255, 255, 255, 0.25);
-    border: 1px solid #fff;
+    color: #fff;
+    border-color: #fff;
 }
 
 .btn.secondary:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 40px #fff;
 }
+
 
 /* Sisältöosiot */
 .section {

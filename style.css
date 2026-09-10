@@ -12,7 +12,8 @@ body {
     background-image: url("assets/hero-ai-developer.png");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* PARALLAX */
+    background-attachment: fixed;
+    /* PARALLAX */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,7 +27,7 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0, 0, 0, 0.55);
     z-index: 0;
 }
 
@@ -49,6 +50,18 @@ body {
     font-weight: 300;
     margin-bottom: 20px;
 }
+
+/* Neon-hohde hero-teksteille */
+.hero-content h1,
+.hero-content h2 {
+    text-shadow:
+        0 0 5px #7df9ff,
+        0 0 10px #7df9ff,
+        0 0 20px #00eaff,
+        0 0 40px #00eaff,
+        0 0 80px #00eaff;
+}
+
 
 .hero-content p {
     max-width: 600px;
@@ -111,8 +124,43 @@ footer {
         opacity: 0;
         transform: translateY(25px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes neonPulse {
+    0% {
+        text-shadow:
+            0 0 5px #7df9ff,
+            0 0 10px #7df9ff,
+            0 0 20px #00eaff,
+            0 0 40px #00eaff,
+            0 0 80px #00eaff;
+    }
+
+    50% {
+        text-shadow:
+            0 0 2px #7df9ff,
+            0 0 5px #7df9ff,
+            0 0 10px #00eaff,
+            0 0 20px #00eaff,
+            0 0 40px #00eaff;
+    }
+
+    100% {
+        text-shadow:
+            0 0 5px #7df9ff,
+            0 0 10px #7df9ff,
+            0 0 20px #00eaff,
+            0 0 40px #00eaff,
+            0 0 80px #00eaff;
+    }
+}
+
+.hero-content h1,
+.hero-content h2 {
+    animation: neonPulse 3s infinite ease-in-out;
 }

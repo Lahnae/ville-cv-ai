@@ -6,52 +6,28 @@ body {
     color: #222;
 }
 
-/* HERO – parallax-tausta + tekstit päällä */
+/* HERO – parallax scroll + overlay + tekstit päällä */
 .hero {
-    position: relative;
     height: 100vh;
-    overflow: hidden;
+    background-image: url("assets/hero-ai-developer.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* PARALLAX */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     text-align: center;
+    color: white;
+    position: relative;
 }
 
-/* Parallax-taustakuva */
-.hero-background {
+/* Tumma overlay kuvan päällä */
+.hero::before {
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%; /* hieman suurempi, jotta parallax toimii */
-    overflow: hidden;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
     z-index: 0;
-}
-
-.hero-background img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%;
-    object-fit: cover;
-    filter: brightness(0.35);
-    transform: translateY(-10%); /* lähtöasento */
-    animation: parallaxScroll 20s linear infinite;
-}
-
-/* Parallax-animaatio */
-@keyframes parallaxScroll {
-    0% {
-        transform: translateY(-10%);
-    }
-    50% {
-        transform: translateY(0%);
-    }
-    100% {
-        transform: translateY(-10%);
-    }
 }
 
 /* Hero-tekstit */

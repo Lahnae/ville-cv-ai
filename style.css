@@ -17,7 +17,6 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    /* PARALLAX */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,15 +34,13 @@ body {
     z-index: 0;
 }
 
-/* Hero-tekstit */
+/* Hero-tekstit + taustalaatikko */
 .hero-content {
     position: relative;
     z-index: 1;
     max-width: 800px;
-    padding: 20px;
+    padding: 40px 30px;
     animation: fadeInUp 1.2s ease-out;
-
-    /* Taustalaatikko */
     background: rgba(0, 0, 0, 0.45);
     border-radius: 16px;
     backdrop-filter: blur(6px);
@@ -51,6 +48,18 @@ body {
     box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
 }
 
+/* Profiilikuva */
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid rgba(0, 255, 255, 0.4);
+    box-shadow: 0 0 20px #00eaff;
+}
+
+/* Hero-otsikot */
 .hero-content h1 {
     font-size: 48px;
     margin-bottom: 10px;
@@ -71,8 +80,8 @@ body {
         0 0 8px #00eaff,
         0 0 8px #00eaff,
         0 0 8px #00eaff;
+    animation: neonPulse 3s infinite ease-in-out;
 }
-
 
 .hero-content p {
     max-width: 600px;
@@ -121,6 +130,52 @@ body {
         0 0 40px #fff;
 }
 
+/* ⭐ Sticky navigaatio */
+.navbar {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #7df9ff;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0 0 10px #00eaff;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #7df9ff;
+    text-shadow: 0 0 10px #00eaff;
+}
 
 /* Sisältöosiot */
 .section {
@@ -186,9 +241,4 @@ footer {
             0 0 8px #00eaff,
             0 0 8px #00eaff;
     }
-}
-
-.hero-content h1,
-.hero-content h2 {
-    animation: neonPulse 3s infinite ease-in-out;
 }

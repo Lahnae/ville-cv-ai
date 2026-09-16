@@ -23,19 +23,27 @@
         </div>
     </header>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Ville Kortesalmi</a>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Ville Kortesalmi</a>
 
-            <ul class="nav-links">
-                <li><a href="index.html#content" class="active">Etusivu</a></li>
-                <li><a href="web-kehitys.html">Web‑kehitys</a></li>
-                <li><a href="microsoft-stack.html">Microsoft‑stack</a></li>
-                <li><a href="pilvipalvelut.html">Pilvipalvelut</a></li>
-                <li><a href="ai-chat.html">AI‑chat</a></li>
-            </ul>
+        <!-- Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </nav>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html" class="active">Etusivu</a></li>
+            <li><a href="web-kehitys.html">Web‑kehitys</a></li>
+            <li><a href="microsoft-stack.html">Microsoft‑stack</a></li>
+            <li><a href="pilvipalvelut.html">Pilvipalvelut</a></li>
+            <li><a href="ai-chat.html">AI‑chat</a></li>
+        </ul>
+    </div>
+</nav>
+
 
 <div id="content">
     <section class="section">
@@ -65,3 +73,6 @@
         </p>
     </section>
 </div>
+<script src="assets/js/hamburger.js"></script>
+</body>
+</html>

@@ -12,8 +12,16 @@
 <nav class="navbar">
     <div class="nav-container">
         <a href="index.html" class="logo">Ville Kortesalmi</a>
-        <ul class="nav-links">
-            <li><a href="index.html#content">Etusivu</a></li>
+
+        <!-- Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Etusivu</a></li>
             <li><a href="web-kehitys.html">Web‑kehitys</a></li>
             <li><a href="microsoft-stack.html">Microsoft‑stack</a></li>
             <li><a href="pilvipalvelut.html" class="active">Pilvipalvelut</a></li>
@@ -36,6 +44,6 @@
 
     <p>Olen toteuttanut pilvipohjaisia API‑ratkaisuja ja serverless‑palveluita.</p>
 </div>
-
+<script src="assets/js/hamburger.js"></script>
 </body>
 </html>

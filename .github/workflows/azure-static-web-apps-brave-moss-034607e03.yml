@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - production-local-ai
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:

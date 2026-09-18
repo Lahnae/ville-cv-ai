@@ -1,7 +1,6 @@
 module.exports = async function (context, req) {
     context.log("AI-chat request received");
 
-    // CORS
     context.res = {
         headers: {
             "Access-Control-Allow-Origin": "*",
@@ -19,32 +18,48 @@ module.exports = async function (context, req) {
 
     if (!userMessage) {
         context.res.status = 400;
-        context.res.body = { error: "Message missing" };
+        context.res.body = {
+            error: "Message missing"
+        };
+        return;
+    }
+
+    const proxyUrl = process.env.OLLAMA_PROXY_URL;
+    const proxyApiKey = process.env.OLLAMA_PROXY_API_KEY;
+
+    if (!proxyUrl || !proxyApiKey) {
+        context.log("Ollama proxy configuration is missing.");
+
+        context.res.status = 500;
+        context.res.body = {
+            error: "Ollama proxy is not configured"
+        };
         return;
     }
 
     try {
-        const ollamaResponse = await fetch("http://127.0.0.1:11434/api/generate", {
+        const response = await fetch(`${proxyUrl}/chat`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "X-API-Key": proxyApiKey
             },
             body: JSON.stringify({
-                model: "villebot",
-                prompt: userMessage,
-                stream: false
+                message: userMessage
             })
         });
 
-        if (!ollamaResponse.ok) {
-            throw new Error(`Ollama returned HTTP ${ollamaResponse.status}`);
-        }
+        const data = await response.json();
 
-        const data = await ollamaResponse.json();
+        if (!response.ok) {
+            throw new Error(
+                `Ollama proxy returned HTTP ${response.status}`
+            );
+        }
 
         context.res.status = 200;
         context.res.body = {
-            reply: data.response
+            reply: data.reply
         };
 
     } catch (error) {
@@ -52,8 +67,7 @@ module.exports = async function (context, req) {
 
         context.res.status = 500;
         context.res.body = {
-            error: "Ollama connection failed",
-            details: error.message
+            error: "AI service unavailable"
         };
     }
 };

@@ -1,5 +1,3 @@
-const fetch = require("node-fetch");
-
 module.exports = async function (context, req) {
     context.log("AI-chat request received");
 
@@ -26,15 +24,21 @@ module.exports = async function (context, req) {
     }
 
     try {
-        // Ollama endpoint (YOUR Nitro machine)
-        const ollamaResponse = await fetch("http://192.168.1.132:11434/api/generate", {
+        const ollamaResponse = await fetch("http://127.0.0.1:11434/api/generate", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
                 model: "villebot",
-                prompt: userMessage
+                prompt: userMessage,
+                stream: false
             })
         });
+
+        if (!ollamaResponse.ok) {
+            throw new Error(`Ollama returned HTTP ${ollamaResponse.status}`);
+        }
 
         const data = await ollamaResponse.json();
 
@@ -53,4 +57,3 @@ module.exports = async function (context, req) {
         };
     }
 };
-

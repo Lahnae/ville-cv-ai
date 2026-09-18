@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,41 +10,55 @@
 
 <body>
 
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="index.html" class="logo">Ville Kortesalmi</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Ville Kortesalmi</a>
 
-        <!-- Hamburger -->
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <!-- Hamburger -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Etusivu</a></li>
+                <li><a href="web-kehitys.html">Web‑kehitys</a></li>
+                <li><a href="microsoft-stack.html">Microsoft‑stack</a></li>
+                <li><a href="pilvipalvelut.html">Pilvipalvelut</a></li>
+                <li><a href="ai-chat.html" class="active">AI‑chat</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">Etusivu</a></li>
-            <li><a href="web-kehitys.html">Web‑kehitys</a></li>
-            <li><a href="microsoft-stack.html">Microsoft‑stack</a></li>
-            <li><a href="pilvipalvelut.html">Pilvipalvelut</a></li>
-            <li><a href="ai-chat.html" class="active">AI‑chat</a></li>
+    <div class="section">
+        <h3>AI‑chat</h3>
+
+        <p>Tälle sivulle tulee oma AI‑chatbot, joka hyödyntää Azure Functions ‑taustapalvelua.</p>
+
+        <p>Rakennetaan:</p>
+
+        <ul>
+            <li>Chat‑UI:n (tekstikenttä + viestilista)</li>
+            <li>Azure Functions ‑pohjainen API</li>
+            <li>Ollama‑mallin integroiti</li>
+            <li>Chat‑ikkuna</li>
         </ul>
     </div>
-</nav>
+    <div class="chat-container">
+        <h3>AI‑chat</h3>
+        <p class="chat-info">Kysy minulta mitä tahansa – AI vastaa puolestani.</p>
 
-<div class="section">
-    <h3>AI‑chat</h3>
+        <div id="chat-window" class="chat-window"></div>
 
-    <p>Tälle sivulle tulee oma AI‑chatbot, joka hyödyntää Azure Functions ‑taustapalvelua.</p>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Kirjoita viesti..." />
+            <button id="chat-send">Lähetä</button>
+        </div>
+    </div>
 
-    <p>Rakennetaan:</p>
-
-    <ul>
-        <li>Chat‑UI:n (tekstikenttä + viestilista)</li>
-        <li>Azure Functions ‑pohjainen API</li>
-        <li>Ollama‑mallin integroiti</li>
-        <li>Chat‑ikkuna</li>
-    </ul>
-</div>
-<script src="assets/js/hamburger.js"></script>
+    <script src="/assets/js/chat.js"></script>
+    <script src="assets/js/hamburger.js"></script>
 </body>
+
 </html>

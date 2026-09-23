@@ -19,7 +19,56 @@ const server = http.createServer(async (req, res) => {
         res.end();
         return;
     }
+    // Health check
+    if (req.method === "GET" && req.url === "/health") {
+        try {
+            const ollamaResponse = await fetch(
+                "http://127.0.0.1:11434/api/tags"
+            );
 
+            if (!ollamaResponse.ok) {
+                throw new Error("Ollama unavailable");
+            }
+
+            const ollamaData = await ollamaResponse.json();
+
+            const modelAvailable = ollamaData.models?.some(
+                model => model.name === "villebot" || model.name?.startsWith("villebot:")
+            );
+
+            if (!modelAvailable) {
+                res.writeHead(503, {
+                    "Content-Type": "application/json"
+                });
+
+                res.end(JSON.stringify({
+                    online: false
+                }));
+
+                return;
+            }
+
+            res.writeHead(200, {
+                "Content-Type": "application/json"
+            });
+
+            res.end(JSON.stringify({
+                online: true,
+                model: "villebot"
+            }));
+
+        } catch (error) {
+            res.writeHead(503, {
+                "Content-Type": "application/json"
+            });
+
+            res.end(JSON.stringify({
+                online: false
+            }));
+        }
+
+        return;
+    }
     // Only POST /chat is allowed
     if (req.method !== "POST" || req.url !== "/chat") {
         res.writeHead(404, { "Content-Type": "application/json" });

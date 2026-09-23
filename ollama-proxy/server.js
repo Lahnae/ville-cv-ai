@@ -22,7 +22,7 @@ const server = http.createServer(async (req, res) => {
 
     // Check API key
     if (req.headers["x-api-key"] !== API_KEY) {
-        res.writeHead(401, { "Content-Type": "application/json" });
+        res.writeHead(401, { "Content-Type": "application/json; charset=utf-8" });
         res.end(JSON.stringify({ error: "Unauthorized" }));
         return;
     }
@@ -46,7 +46,7 @@ const server = http.createServer(async (req, res) => {
 
             if (!modelAvailable) {
                 res.writeHead(503, {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json; charset=utf-8"
                 });
 
                 res.end(JSON.stringify({
@@ -57,7 +57,7 @@ const server = http.createServer(async (req, res) => {
             }
 
             res.writeHead(200, {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json; charset=utf-8"
             });
 
             res.end(JSON.stringify({
@@ -67,7 +67,7 @@ const server = http.createServer(async (req, res) => {
 
         } catch (error) {
             res.writeHead(503, {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json; charset=utf-8"
             });
 
             res.end(JSON.stringify({
@@ -79,7 +79,7 @@ const server = http.createServer(async (req, res) => {
     }
     // Only POST /chat is allowed
     if (req.method !== "POST" || req.url !== "/chat") {
-        res.writeHead(404, { "Content-Type": "application/json" });
+        res.writeHead(404, { "Content-Type": "application/json; charset=utf-8" });
         res.end(JSON.stringify({ error: "Not found" }));
         return;
     }
@@ -96,7 +96,7 @@ const server = http.createServer(async (req, res) => {
             const message = data.message;
 
             if (!message) {
-                res.writeHead(400, { "Content-Type": "application/json" });
+                res.writeHead(400, { "Content-Type": "application/json; charset=utf-8" });
                 res.end(JSON.stringify({ error: "Message missing" }));
                 return;
             }
@@ -106,7 +106,7 @@ const server = http.createServer(async (req, res) => {
                 {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json; charset=utf-8"
                     },
                     body: JSON.stringify({
                         model: "villebot",
@@ -125,7 +125,7 @@ const server = http.createServer(async (req, res) => {
             const ollamaData = await ollamaResponse.json();
 
             res.writeHead(200, {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json; charset=utf-8"
             });
 
             res.end(JSON.stringify({
@@ -136,7 +136,7 @@ const server = http.createServer(async (req, res) => {
             console.error("Proxy error:", error);
 
             res.writeHead(500, {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json; charset=utf-8"
             });
 
             res.end(JSON.stringify({
@@ -149,3 +149,4 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, "127.0.0.1", () => {
     console.log(`Ollama proxy listening on http://127.0.0.1:${PORT}`);
 });
+

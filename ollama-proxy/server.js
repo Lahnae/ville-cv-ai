@@ -19,6 +19,14 @@ const server = http.createServer(async (req, res) => {
         res.end();
         return;
     }
+
+    // Check API key
+    if (req.headers["x-api-key"] !== API_KEY) {
+        res.writeHead(401, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Unauthorized" }));
+        return;
+    }
+
     // Health check
     if (req.method === "GET" && req.url === "/health") {
         try {
@@ -73,13 +81,6 @@ const server = http.createServer(async (req, res) => {
     if (req.method !== "POST" || req.url !== "/chat") {
         res.writeHead(404, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ error: "Not found" }));
-        return;
-    }
-
-    // Check API key
-    if (req.headers["x-api-key"] !== API_KEY) {
-        res.writeHead(401, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Unauthorized" }));
         return;
     }
 

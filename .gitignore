@@ -144,3 +144,7 @@ vite.config.ts.timestamp-*
 
 # Azure Functions local settings
 api/local.settings.json
+
+# Local AI / development
+ollama-proxy/.env
+*.secret

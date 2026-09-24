@@ -137,3 +137,6 @@ code { padding:.12rem .35rem; border-radius:4px; background:#eef3f7; color:#183f
   html { scroll-behavior:auto; }
   *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
 }
+
+/* Keep the closing call-to-action headings centered at every width. */
+.contact-section h2#contact-title, .contact-section.compact-contact h2 { width: min(100%, 740px); margin-inline: auto; text-align: center; }

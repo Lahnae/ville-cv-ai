@@ -3,10 +3,34 @@ const chatForm = document.getElementById("chat-form");
 const chatInput = document.getElementById("chat-input");
 const chatSend = document.getElementById("chat-send");
 
+function appendMessageText(element, text) {
+    const normalized = String(text)
+        .replace(/\\\*\s*\\\*/g, "**")
+        .replace(/\\\*/g, "*");
+    const boldPattern = /\*\*(.+?)\*\*/gs;
+    let lastIndex = 0;
+
+    for (const match of normalized.matchAll(boldPattern)) {
+        element.appendChild(document.createTextNode(normalized.slice(lastIndex, match.index)));
+        const strong = document.createElement("strong");
+        strong.textContent = match[1];
+        element.appendChild(strong);
+        lastIndex = match.index + match[0].length;
+    }
+
+    element.appendChild(document.createTextNode(normalized.slice(lastIndex)));
+}
+
 function addMessage(text, sender) {
     const msg = document.createElement("div");
     msg.classList.add("chat-message", sender === "user" ? "chat-user" : "chat-ai");
-    msg.textContent = text;
+
+    if (sender === "ai") {
+        appendMessageText(msg, text);
+    } else {
+        msg.textContent = text;
+    }
+
     chatWindow.appendChild(msg);
     chatWindow.scrollTop = chatWindow.scrollHeight;
 }

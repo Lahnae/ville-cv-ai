@@ -22,14 +22,14 @@
   <main id="main" class="page-main">
     <header class="page-header"><p class="eyebrow">Keskustele CV:n kanssa</p><h1>Kysy Villeltä</h1><p class="lead">Voit kysyä esimerkiksi työkokemuksesta, koulutuksesta, projekteista tai käytetyistä teknologioista.</p></header>
     <section class="section chat-section" aria-label="AI-keskustelu">
-      <p class="chat-info">Chatin AI-malli toimii Ollaman kautta omalla tietokoneella. Keskustelu on käytettävissä silloin, kun palvelin on käynnissä.</p>
+      <p class="chat-info">Chat hyödyntää RAG-hakua (Retrieval-Augmented Generation): se hakee kysymykseesi liittyvää tietoa CV:n tietopohjasta ja antaa sen tekoälymallille vastauksen tueksi. Malli toimii Ollaman kautta omalla tietokoneella.</p>
       <div id="chat-window" class="chat-window" aria-live="polite" aria-label="Keskustelu"></div>
       <form class="chat-input-area" id="chat-form">
         <label class="visually-hidden" for="chat-input">Kirjoita viesti</label>
         <input type="text" id="chat-input" placeholder="Kirjoita viesti..." autocomplete="off">
         <button id="chat-send" type="submit">Lähetä</button>
       </form>
-      <p class="small-note">Älä kirjoita chattiin luottamuksellisia tietoja. Palvelun saatavuus vaihtelee, koska malli toimii omalla laitteella.</p>
+      <p class="small-note">Chat-keskusteluja ei tallenneta. Vastauksissa voi olla virheitä, joten tarkista tiedot CV:stä <a href="assets/CV-VilleKortesalmi.pdf" target="_blank" rel="noopener">täältä</a>. Älä kirjoita chattiin luottamuksellisia tietoja. Palvelun saatavuus vaihtelee, koska malli toimii omalla laitteella.</p>
       <p><a class="text-link" href="projects.html">Lue chatbotin toteutuksesta <span aria-hidden="true">→</span></a></p>
     </section>
   </main>

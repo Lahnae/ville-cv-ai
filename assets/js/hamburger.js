@@ -1,20 +1,21 @@
-// Hamburger menu
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("nav-links");
 
 if (hamburger && navLinks) {
     hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("active");
-        navLinks.classList.toggle("active");
+        const expanded = hamburger.getAttribute("aria-expanded") === "true";
+        hamburger.setAttribute("aria-expanded", String(!expanded));
+        hamburger.setAttribute("aria-label", expanded ? "Avaa valikko" : "Sulje valikko");
+        hamburger.classList.toggle("active", !expanded);
+        navLinks.classList.toggle("active", !expanded);
+    });
+
+    navLinks.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+            hamburger.setAttribute("aria-expanded", "false");
+            hamburger.setAttribute("aria-label", "Avaa valikko");
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+        }
     });
 }
-
-// Aktiivinen navigaatiolinkki automaattisesti
-const currentPage = window.location.pathname.split("/").pop();
-const links = document.querySelectorAll(".nav-links a");
-
-links.forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
-    }
-});

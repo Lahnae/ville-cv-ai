@@ -1,9 +1,7 @@
-// Elements
 const chatWindow = document.getElementById("chat-window");
 const chatInput = document.getElementById("chat-input");
 const chatSend = document.getElementById("chat-send");
 
-// Add message to UI
 function addMessage(text, sender) {
     const msg = document.createElement("div");
     msg.classList.add("chat-message");
@@ -16,45 +14,92 @@ function addMessage(text, sender) {
 
     msg.textContent = text;
     chatWindow.appendChild(msg);
-
-    // Auto-scroll
     chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-// Send message to backend
-async function sendMessage() {
-    const text = chatInput.value.trim();
-    if (!text) return;
+function updateStatus(online, model = null) {
+    let status = document.getElementById("ai-status");
 
-    // Show user message
-    addMessage(text, "user");
-    chatInput.value = "";
+    if (!status) {
+        status = document.createElement("div");
+        status.id = "ai-status";
+        status.classList.add("ai-status");
+        chatWindow.parentElement.insertBefore(status, chatWindow);
+    }
 
-    // Call Azure Function
+    if (online) {
+        status.textContent = model
+            ? `🟢 AI-palvelu käytettävissä – ${model}`
+            : "🟢 AI-palvelu käytettävissä";
+
+        status.classList.remove("offline");
+        status.classList.add("online");
+    } else {
+        status.textContent = "🔴 AI-palvelu ei ole tällä hetkellä käytettävissä";
+
+        status.classList.remove("online");
+        status.classList.add("offline");
+    }
+}
+
+async function checkAIStatus() {
     try {
-        const response = await fetch("/api/chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: text })
+        const response = await fetch("/api/status", {
+            method: "GET",
+            cache: "no-store"
         });
 
         const data = await response.json();
 
-        // Show AI response
+        updateStatus(data.online === true, data.model);
+    } catch (error) {
+        updateStatus(false);
+        console.error("AI status check failed:", error);
+    }
+}
+
+async function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, "user");
+    chatInput.value = "";
+
+    try {
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: text
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "AI service unavailable");
+        }
+
         addMessage(data.reply, "ai");
 
     } catch (error) {
-        addMessage("Virhe: palvelimeen ei saatu yhteyttä.", "ai");
+        addMessage(
+            "🔴 AI-palvelu ei ole tällä hetkellä käytettävissä. Yritä myöhemmin uudelleen.",
+            "ai"
+        );
+
         console.error(error);
     }
 }
 
-// Send on button click
 chatSend.addEventListener("click", sendMessage);
 
-// Send on Enter key
 chatInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         sendMessage();
     }
 });
+
+checkAIStatus();

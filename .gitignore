@@ -141,3 +141,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Azure Functions local settings
+api/local.settings.json
+
+# Local AI / development
+ollama-proxy/.env
+*.secret

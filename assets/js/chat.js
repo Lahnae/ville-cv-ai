@@ -45,14 +45,42 @@ function updateStatus(online, model = null) {
         chatWindow.parentElement.insertBefore(status, chatWindow);
     }
 
+    let requestButton = document.getElementById("ai-start-request");
+    if (!requestButton) {
+        requestButton = document.createElement("a");
+        requestButton.id = "ai-start-request";
+        requestButton.classList.add("btn");
+        requestButton.href =
+            "mailto:vilkor88@gmail.com" +
+            "?subject=AI-chatin%20käynnistämispyyntö" +
+            "&body=Hei%20Ville!%0A%0AKävin%20tutustumassa%20CV-sivustoosi%20ja%20haluaisin%20kokeilla%20AI-chatia.%20Voisitko%20laittaa%20chatin%20päälle%3F%0A%0AYstävällisin%20terveisin%2C%0A";
+        requestButton.textContent = "Pyydä AI-chat päälle";
+        requestButton.target = "_blank";
+        requestButton.rel = "noopener";
+        requestButton.setAttribute("aria-label", "Pyydä Villeä käynnistämään AI-chat");
+
+        chatWindow.parentElement.insertBefore(
+            requestButton,
+            chatWindow
+        );
+    }
+
     if (online) {
-        status.textContent = model ? `AI-palvelu käytettävissä – ${model}` : "AI-palvelu käytettävissä";
+        status.textContent = model
+            ? `AI-palvelu käytettävissä – ${model}`
+            : "AI-palvelu käytettävissä";
+
         status.classList.remove("offline");
         status.classList.add("online");
+
+        requestButton.style.display = "none";
     } else {
         status.textContent = "AI-palvelu ei ole tällä hetkellä käytettävissä";
+
         status.classList.remove("online");
         status.classList.add("offline");
+
+        requestButton.style.display = "inline-flex";
     }
 }
 

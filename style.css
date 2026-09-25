@@ -831,6 +831,11 @@ code {
   background: #0f548e;
 }
 
+#ai-start-request {
+  display: none;
+  margin: 0 auto 1rem;
+}
+
 @media (max-width:900px) {
   .hamburger {
     display: block;

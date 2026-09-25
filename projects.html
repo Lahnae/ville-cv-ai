@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tutustu Ville Kortesalmen AI-CV-chatbot-projektiin ja sen Azure-arkkitehtuuriin.">
+  <meta name="theme-color" content="#0b1220">
+  <title>Projektit – Ville Kortesalmi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Siirry sisältöön</a>
+  <nav class="navbar" aria-label="Päänavigaatio">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Ville Kortesalmi</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Avaa valikko" aria-controls="nav-links"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Etusivu</a></li>
+        <li><a href="index.html#osaaminen">Osaaminen</a></li>
+        <li><a href="projects.html" aria-current="page">Projektit</a></li>
+        <li><a href="ai-chat.html">AI-chat</a></li>
+        <li><a href="index.html#contact-title">Yhteystiedot</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main id="main" class="page-main">
+    <header class="page-header">
+      <p class="eyebrow">Projekti</p>
+      <h1>AI-CV-chatbot</h1>
+      <p class="lead">Käytännön esimerkki siitä, miten web-käyttöliittymä, serverless-rajapinta, pilvipalvelu ja
+        paikallinen kielimalli voidaan yhdistää.</p>
+    </header>
+
+    <section class="section section-card" aria-labelledby="goal-title">
+      <p class="eyebrow">Tavoite</p>
+      <h2 id="goal-title">CV:hen voi tutustua keskustellen</h2>
+      <p>Chatbot on osa omaa CV-sivustoa. Vierailija voi kysyä minun työkokemuksesta, koulutuksesta, projekteista tai
+        teknologioista. Vastaukset tuotetaan projektikohtaisella <code>villebot</code>-mallilla, joka toimii Ollaman
+        kautta omalla Windows-koneella.</p>
+    </section>
+
+    <section class="section section-tint" aria-labelledby="architecture-title">
+      <div class="section-inner">
+        <p class="eyebrow">Arkkitehtuuri</p>
+        <h2 id="architecture-title">Pyyntö kulkee selaimesta paikalliseen malliin</h2>
+        <ol class="architecture-steps">
+          <li><strong>Selain</strong><span>Chatin käyttöliittymä lähettää viestin Azure Static Web Appsin
+              <code>/api/chat</code>-rajapintaan.</span></li>
+          <li><strong>Azure Functions</strong><span>Serverless-funktio välittää pyynnön ympäristömuuttujista saatavalla
+              avaimella suojatulle proxy-palvelulle.</span></li>
+          <li><strong>Tailscale Funnel</strong><span>HTTPS-yhteys välittää pyynnön omalla Windows-koneella käynnissä
+              olevalle palvelulle.</span></li>
+          <li><strong>Ollama &amp; villebot</strong><span>Paikallinen Ollama tuottaa vastauksen; se palautuu samaa
+              reittiä takaisin selaimeen.</span></li>
+        </ol>
+        <p class="small-note">Ollamaa ei julkaista suoraan internetiin. API-avain säilytetään Azure Static Web Appsin
+          asetuksissa, ei käyttöliittymässä.</p>
+      </div>
+    </section>
+
+    <section class="section section-card" aria-labelledby="stack-title">
+      <p class="eyebrow">Toteutuksen osat</p>
+      <h2 id="stack-title">Teknologiat</h2>
+      <div class="card-grid compact-grid">
+        <div class="mini-card">
+          <h3>Käyttöliittymä</h3>
+          <p>HTML, CSS ja JavaScript</p>
+        </div>
+        <div class="mini-card">
+          <h3>Rajapinta</h3>
+          <p>Azure Functions ja Node.js</p>
+        </div>
+        <div class="mini-card">
+          <h3>Julkaisu</h3>
+          <p>Azure Static Web Apps ja GitHub Actions</p>
+        </div>
+        <div class="mini-card">
+          <h3>AI-yhteys</h3>
+          <p>Ollama, villebot ja Tailscale Funnel</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-card" aria-labelledby="learning-title">
+      <p class="eyebrow">Mitä projekti osoittaa</p>
+      <h2 id="learning-title">Full stack -ajattelua päästä päähän</h2>
+      <ul class="check-list">
+        <li>Frontendin ja HTTP-rajapinnan yhdistäminen</li>
+        <li>Azure Functions -taustapalvelun hyödyntäminen</li>
+        <li>Salaisuuksien pitäminen palvelinpuolella</li>
+        <li>Paikallisen AI-palvelun yhdistäminen pilvessä julkaistuun sovellukseen</li>
+        <li>Julkaisun automatisointi GitHub Actionsilla</li>
+      </ul>
+    </section>
+    <section class="section contact-section compact-contact">
+      <h2>Kokeile sivustoa</h2>
+      <p>AI-chatin vastaaminen riippuu siitä, onko omalla koneella toimiva palvelu käytettävissä.</p>
+      <div class="cta"><a class="btn" href="ai-chat.html">Avaa AI-chat</a><a class="btn secondary light"
+          href="https://github.com/Lahnae/ville-cv-ai" target="_blank" rel="noopener">Katso lähdekoodi</a></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>Ville Kortesalmi <span aria-hidden="true">·</span> Hämeenlinna</p><a
+      href="mailto:vilkor88@gmail.com">vilkor88@gmail.com</a><a href="index.html">Takaisin etusivulle</a>
+  </footer>
+  <script src="assets/js/hamburger.js"></script>
+</body>
+
+</html>

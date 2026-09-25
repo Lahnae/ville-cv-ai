@@ -1,104 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-chat – Ville Kortesalmi</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kysy Ville Kortesalmen osaamisesta AI-CV-chatbotilta.">
+  <meta name="theme-color" content="#0b1220">
+  <title>AI-chat – Ville Kortesalmi</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Ville Kortesalmi</a>
-
-            <!-- Hamburger -->
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Etusivu</a></li>
-                <li><a href="web-kehitys.html">Web-kehitys</a></li>
-                <li><a href="microsoft-stack.html">Microsoft-stack</a></li>
-                <li><a href="pilvipalvelut.html">Pilvipalvelut</a></li>
-                <li><a href="ai-chat.html" class="active">AI-chat</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="section">
-        <h3>AI-chat</h3>
-
-        <p>
-            Tämä AI-chat on osa omaa CV-sivustoani ja samalla käytännön
-            esimerkki siitä, miten pilvipalveluita, serverless-arkkitehtuuria
-            ja paikallista tekoälymallia voidaan yhdistää toimivaksi kokonaisuudeksi.
-        </p>
-
-        <p>
-            Chat käyttää Azure Static Web Apps -ympäristössä julkaistua
-            Azure Functions -rajapintaa. Varsinainen tekoälymalli toimii
-            omalla Windows-koneellani Ollaman avulla.
-        </p>
-
-        <ul>
-            <li><strong>Frontend:</strong> HTML, CSS ja JavaScript</li>
-            <li><strong>API:</strong> Azure Functions ja Node.js</li>
-            <li><strong>AI:</strong> Ollama ja qwen3:8b</li>
-            <li><strong>Oma malli:</strong> villebot</li>
-            <li><strong>Yhteys:</strong> Tailscale Funnel</li>
-            <li><strong>CI/CD:</strong> GitHub Actions</li>
-            <li><strong>Hosting:</strong> Azure Static Web Apps</li>
-        </ul>
-
-        <p>
-            Tavoitteena on ollut rakentaa mahdollisimman kevyt ja kustannustehokas
-            ratkaisu, jossa AI-inferenssi tapahtuu omalla laitteella ja
-            verkkosivusto sekä API toimivat pilviympäristössä.
-        </p>
+  <a class="skip-link" href="#main">Siirry sisältöön</a>
+  <nav class="navbar" aria-label="Päänavigaatio">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Ville Kortesalmi</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Avaa valikko" aria-controls="nav-links"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Etusivu</a></li>
+        <li><a href="index.html#osaaminen">Osaaminen</a></li>
+        <li><a href="projects.html">Projektit</a></li>
+        <li><a href="ai-chat.html" aria-current="page">AI-chat</a></li>
+        <li><a href="index.html#contact-title">Yhteystiedot</a></li>
+      </ul>
     </div>
-
-    <div class="chat-container">
-        <h3>Kysy Villeltä</h3>
-
-        <p class="chat-info">
-            Voit kysyä esimerkiksi työkokemuksestani, koulutuksestani,
-            ohjelmointiprojekteistani tai käyttämistäni teknologioista.
-        </p>
-
-        <p class="chat-info">
-            AI-palvelu toimii omalla tietokoneellani, joten se ei ole jatkuvasti
-            päällä. Jos haluat keskustella kanssani AI-chatin kautta, voit
-            pyytää minua käynnistämään palvelun sähköpostilla.
-        </p>
-
-        <p class="chat-info">
-            <a href="mailto:vilkor88@gmail.com?subject=AI-chatin%20k%C3%A4ynnist%C3%A4mispyynt%C3%B6&body=Hei%20Ville!%0A%0AK%C3%A4vin%20tutustumassa%20CV-sivustoosi%20ja%20haluaisin%20kokeilla%20AI-chatia.%20Voisitko%20laittaa%20chatin%20p%C3%A4%C3%A4lle%3F%0A%0AYst%C3%A4v%C3%A4llisin%20terveisin%2C%0A">
-                Lähetä viesti ja pyydä AI-chat päälle
-            </a>
-        </p>
-
-        <div id="chat-window" class="chat-window"></div>
-
-        <div class="chat-input-area">
-            <input
-                type="text"
-                id="chat-input"
-                placeholder="Kirjoita viesti..."
-                autocomplete="off"
-            />
-            <button id="chat-send">Lähetä</button>
-        </div>
-    </div>
-
-    <script src="/assets/js/chat.js"></script>
-    <script src="assets/js/hamburger.js"></script>
-
+  </nav>
+  <main id="main" class="page-main">
+    <header class="page-header">
+      <p class="eyebrow">Keskustele CV:n kanssa</p>
+      <h1>Kysy Villeltä</h1>
+      <p class="lead">Voit kysyä esimerkiksi työkokemuksesta, koulutuksesta, projekteista tai käytetyistä
+        teknologioista.</p>
+    </header>
+    <section class="section chat-section" aria-label="AI-keskustelu">
+      <p class="chat-info">Chat hyödyntää RAG-hakua (Retrieval-Augmented Generation): se hakee kysymykseesi liittyvää
+        tietoa CV:n tietopohjasta ja antaa sen tekoälymallille vastauksen tueksi. Malli toimii Ollaman kautta omalla
+        tietokoneella.</p>
+      <div id="chat-window" class="chat-window" aria-live="polite" aria-label="Keskustelu"></div>
+      <form class="chat-input-area" id="chat-form">
+        <label class="visually-hidden" for="chat-input">Kirjoita viesti</label>
+        <input type="text" id="chat-input" placeholder="Kirjoita viesti..." autocomplete="off">
+        <button id="chat-send" type="submit">Lähetä</button>
+      </form>
+      <p class="small-note">Chat-keskusteluja ei tallenneta. Vastauksissa voi olla virheitä, joten tarkista tiedot
+        CV:stä <a href="assets/CV-VilleKortesalmi.pdf" target="_blank" rel="noopener">täältä</a>. Älä kirjoita chattiin
+        luottamuksellisia tietoja. Palvelun saatavuus vaihtelee, koska malli toimii omalla laitteella.</p>
+      <p><a class="text-link" href="projects.html">Lue chatbotin toteutuksesta <span aria-hidden="true">→</span></a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>Ville Kortesalmi <span aria-hidden="true">·</span> Hämeenlinna</p><a
+      href="mailto:vilkor88@gmail.com">vilkor88@gmail.com</a><a href="projects.html">Projektin esittely</a>
+  </footer>
+  <script src="assets/js/chat.js"></script>
+  <script src="assets/js/hamburger.js"></script>
 </body>
 
 </html>

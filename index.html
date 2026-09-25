@@ -1,78 +1,128 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fi">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ville Kortesalmi – CV & Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ville Kortesalmen portfolio: full stack -kehitys, Microsoft-teknologiat, Azure ja oma AI-CV-chatbot.">
+  <meta name="theme-color" content="#0b1220">
+  <title>Ville Kortesalmi – Full stack & Azure</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <a class="skip-link" href="#main">Siirry sisältöön</a>
+  <nav class="navbar" aria-label="Päänavigaatio">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Ville Kortesalmi</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Avaa valikko" aria-controls="nav-links" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" aria-current="page">Etusivu</a></li>
+        <li><a href="#osaaminen">Osaaminen</a></li>
+        <li><a href="projects.html">Projektit</a></li>
+        <li><a href="ai-chat.html">AI-chat</a></li>
+        <li><a href="index.html#contact-title">Yhteystiedot</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <main id="main">
     <header class="hero">
-        <div class="hero-content">
-            <h1>Ville Kortesalmi</h1>
-            <h2>Modernien teknologioiden kehittäjä</h2>
-            <p>Microsoft‑teknologiat, monipuoliset kielet ja laajennan osaamistani tekoälyn avulla.</p>
-            <div class="cta">
-                <a href="#content" class="btn">Lue lisää</a>
-                <!-- <a href="assets/CV-VilleKortesalmi.pdf" class="btn" download>Lataa CV (PDF)</a> -->
-                <a href="mailto:vilkor88@gmail.com" class="btn secondary">Ota yhteyttä</a>
-            </div>
+      <div class="hero-content">
+        <p class="eyebrow">Portfolio &amp; CV · Hämeenlinna</p>
+        <h1>Ville Kortesalmi</h1>
+        <h2>Full stack -kehitys ja Azure</h2>
+        <p class="hero-lead">Rakennan verkkoratkaisuja käyttöliittymästä pilvipalveluihin. Minua kiinnostavat erityisesti Microsoftin teknologiat, Azure ja tekoälyn käytännön sovellukset.</p>
+        <div class="cta">
+          <a class="btn" href="projects.html">Tutustu projektiin</a>
+          <a class="btn secondary" href="assets/CV-VilleKortesalmi.pdf" target="_blank" rel="noopener">Avaa CV (PDF)</a>
         </div>
+      </div>
     </header>
 
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="index.html" class="logo">Ville Kortesalmi</a>
+    <section class="section intro-section" aria-labelledby="intro-title">
+      <p class="eyebrow">Lyhyesti minusta</p>
+      <h2 id="intro-title">Kehitän osaamistani rakentamalla toimivia kokonaisuuksia</h2>
+      <p class="lead">Olen Hämeenlinnasta oleva kehittäjä, jota kiinnostavat web-kehitys, Microsoft-teknologiat ja pilvipalvelut. Yhdistän web-kehityksen, Microsoft-osaamisen ja pilvipalvelut käytännön projekteissa. Tällä sivustolla esittelen erityisesti oman AI-CV-chatbotin ja sen Azure-pohjaisen arkkitehtuurin.</p>
+      <a class="text-link" href="assets/CV-VilleKortesalmi.pdf" target="_blank" rel="noopener">Katso työkokemus ja koulutus CV:stä <span aria-hidden="true">→</span></a>
+    </section>
 
-        <!-- Hamburger -->
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+    <section class="section section-tint" id="osaaminen" aria-labelledby="skills-title">
+      <div class="section-inner">
+        <p class="eyebrow">Teknologiat käytännössä</p>
+        <h2 id="skills-title">Osaamisalueet</h2>
+        <p class="section-lead">Kehitän ratkaisuja käyttöliittymästä rajapintaan ja pilveen. Alla olevat teknologiat pohjautuvat projekteissani käyttämääni ja sivustolla esiteltyyn osaamiseen.</p>
+        <div class="card-grid">
+          <article class="info-card">
+            <span class="card-number">01</span>
+            <h3>Web &amp; käyttöliittymät</h3>
+            <p>Responsiiviset sivut ja käyttöliittymät, joissa huomioin selkeän rakenteen ja käytettävyyden.</p>
+            <ul class="tag-list"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>WordPress</li><li>PHP</li></ul>
+          </article>
+          <article class="info-card">
+            <span class="card-number">02</span>
+            <h3>Backend &amp; Microsoft</h3>
+            <p>Rajapintojen ja sovelluslogiikan toteutus sekä Microsoft-teknologioiden hyödyntäminen.</p>
+            <ul class="tag-list"><li>Node.js</li><li>C#</li><li>.NET</li><li>Azure Functions</li><li>REST API</li></ul>
+          </article>
+          <article class="info-card">
+            <span class="card-number">03</span>
+            <h3>Azure, julkaisu &amp; AI</h3>
+            <p>Verkkosovellusten julkaisu pilveen ja palveluiden yhdistäminen toimivaksi kokonaisuudeksi.</p>
+            <ul class="tag-list"><li>Azure Static Web Apps</li><li>Azure Functions</li><li>GitHub Actions</li><li>Ollama</li><li>Tailscale</li></ul>
+          </article>
         </div>
-
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html" class="active">Etusivu</a></li>
-            <li><a href="web-kehitys.html">Web‑kehitys</a></li>
-            <li><a href="microsoft-stack.html">Microsoft‑stack</a></li>
-            <li><a href="pilvipalvelut.html">Pilvipalvelut</a></li>
-            <li><a href="ai-chat.html">AI‑chat</a></li>
-        </ul>
-    </div>
-</nav>
-
-
-<div id="content">
-    <section class="section">
-        <h3>Kuka olen</h3>
-        <p>
-            Olen Ville Kortesalmi, modernien teknologioiden kehittäjä Hämeenlinnasta.
-            Työskentelen web‑kehityksen, Microsoft‑teknologioiden ja pilvipalveluiden parissa.
-            Rakennan ratkaisuja, jotka yhdistävät selkeän arkkitehtuurin, käytettävyyden ja
-            nykyaikaiset teknologiat — ja hyödynnän tekoälyä kehitystyön tukena.
-        </p>
+        <p class="small-note">Teknologialista kuvaa projektien yhteydessä käytettyjä ratkaisuja ja aiempia sivuston sisältöjä.</p>
+      </div>
     </section>
 
-    <section class="section">
-        <h3>Minun tapani tehdä töitä</h3>
-        <p>
-            Lähestyn kehitystyötä käytännönläheisesti: selkeä suunnittelu, tehokas toteutus ja
-            jatkuva oppiminen. Pidän koodista, joka on luettavaa, modulaarista ja helposti
-            ylläpidettävää. Työskentelen mielelläni sekä itsenäisesti että osana tiimiä.
-        </p>
+    <section class="section" aria-labelledby="featured-title">
+      <div class="section-inner">
+        <div class="section-heading-row">
+          <div><p class="eyebrow">Projekti</p><h2 id="featured-title">AI-CV-chatbot</h2></div>
+          <a class="text-link" href="projects.html">Projektin esittely <span aria-hidden="true">→</span></a>
+        </div>
+        <article class="feature-card">
+          <div class="feature-copy">
+            <p class="project-kicker">Azure · Serverless · Paikallinen AI</p>
+            <h3>CV, johon voi keskustellen tutustua</h3>
+            <p>Rakensin CV-sivustolle chatbotin, joka vastaa Villeä ja hänen osaamistaan koskeviin kysymyksiin. Selain käyttää Azure Functions -rajapintaa, joka välittää pyynnön suojatun yhteyden kautta omalla tietokoneella toimivalle Ollama-mallille.</p>
+            <a class="btn" href="projects.html">Näin projekti toimii</a>
+          </div>
+          <div class="architecture" aria-label="Projektin kulku">
+            <span>Selain</span>
+            <span class="flow-arrow" aria-hidden="true">↓</span>
+            <span>Azure Static Web Apps</span>
+            <span class="flow-arrow" aria-hidden="true">↓</span>
+            <span>Azure Functions API</span>
+            <span class="flow-arrow" aria-hidden="true">↓</span>
+            <span>Tailscale Funnel</span>
+            <span class="flow-arrow" aria-hidden="true">↓</span>
+            <span>Ollama · villebot</span>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="section">
-        <h3>Mitä teen tällä hetkellä</h3>
-        <p>
-            Syvennän osaamistani tekoälyn, automaation ja modernien Microsoft‑ratkaisujen parissa.
-            Rakennan myös omaa AI‑chatbot‑ratkaisua, joka hyödyntää Azure Functions ‑taustapalvelua.
-        </p>
+    <section class="section section-tint" aria-labelledby="approach-title">
+      <div class="section-inner split-section">
+        <div><p class="eyebrow">Työskentelytapa</p><h2 id="approach-title">Selkeä rakenne, käytännön toteutus</h2></div>
+        <p class="lead">Pidän ylläpidettävästä ja luettavasta koodista. Etenen suunnittelusta toteutukseen ja julkaisuun, opin tekemällä ja työskentelen mielelläni sekä itsenäisesti että osana tiimiä.</p>
+      </div>
     </section>
-</div>
-<script src="assets/js/hamburger.js"></script>
+
+    <section class="section contact-section" id="yhteys" aria-labelledby="contact-title">
+      <p class="eyebrow">Ota yhteyttä</p>
+      <h2 id="contact-title">Rakennetaanko jotain yhdessä?</h2>
+      <p>Olen kiinnostunut full stack -kehityksestä, Azure-ratkaisuista ja uusista kehitysprojekteista.</p>
+      <div class="cta">
+        <a class="btn" href="mailto:vilkor88@gmail.com">Lähetä sähköpostia</a>
+        <a class="btn secondary light" href="assets/CV-VilleKortesalmi.pdf" target="_blank" rel="noopener">Avaa CV (PDF)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p>Ville Kortesalmi <span aria-hidden="true">·</span> Hämeenlinna</p><a href="mailto:vilkor88@gmail.com">vilkor88@gmail.com</a><a href="https://github.com/Lahnae/ville-cv-ai" target="_blank" rel="noopener">GitHub-projekti</a></footer>
+  <script src="assets/js/hamburger.js"></script>
 </body>
 </html>

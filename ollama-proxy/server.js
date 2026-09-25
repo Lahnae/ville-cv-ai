@@ -1,10 +1,19 @@
-﻿const http = require("http");
+const http = require("http");
+const { createRetriever } = require("./retrievers");
 
-const PORT = 3000;
+const PORT = Number(process.env.PROXY_PORT || 3000);
 const API_KEY = process.env.PROXY_API_KEY;
 
 if (!API_KEY) {
     console.error("ERROR: PROXY_API_KEY is not set.");
+    process.exit(1);
+}
+
+let retriever;
+try {
+    retriever = createRetriever();
+} catch (error) {
+    console.error("ERROR: Could not initialize knowledge retriever:", error.message);
     process.exit(1);
 }
 
@@ -101,6 +110,17 @@ const server = http.createServer(async (req, res) => {
                 return;
             }
 
+            const matches = retriever.retrieve(message);
+            const context = matches.length
+                ? matches.map(match => `[${match.source}]\n${match.text}`).join("\n\n")
+                : "Ei löytynyt kysymykseen liittyviä CV-lähdetietoja.";
+            const prompt = [
+                "Vastaa suomeksi käyttäjän kysymykseen alla olevan CV-tietopohjan perusteella. Älä keksi tietoja. Jos kysytty tieto puuttuu, vastaa täsmälleen: \"Tätä tietoa ei ole saatavilla CV:ssä.\"",
+                `CV-tietopohja:\n${context}`,
+                `Kysymys: ${message}`,
+                "Vastaus:"
+            ].join("\n\n");
+
             const ollamaResponse = await fetch(
                 "http://127.0.0.1:11434/api/generate",
                 {
@@ -110,7 +130,7 @@ const server = http.createServer(async (req, res) => {
                     },
                     body: JSON.stringify({
                         model: "villebot",
-                        prompt: message,
+                        prompt,
                         stream: false
                     })
                 }
